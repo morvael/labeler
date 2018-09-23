@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2018 Dominik Derwiński
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html lang="en">
+  <head>
+    <title>Labeler</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p>Some tips and tricks:</p>
+    <ul>
+      <li>To create flat round label (to be put on a flat base top, instead of
+        a sloped base edge), set height to 0.</li>
+      <li>To create plain rectangular label, set covered angle to 0. In such
+        a situation, diameters become the length of its top and bottom side. By
+        specifying different lengths, it's possible to create a trapeze label.</li>
+      <li>It may be easier to print the resulting image, if page size is reduced
+        to include margins (and normal margins are set to 0), instead of using
+        full page size with normal margins. For example use page size of 160x247
+        with 0mm margins, instead of page size of 210x297 with 25mm margins, to
+        print on A4 paper.</li>
+      <li>Make sure the image is printed at correct DPI, to achieve desired
+        results.</li>
+      <li>In the editor you can only see preview of the first label in each set,
+        only the resulting image will contain them all.</li>
+      <li>This tool is (for now) able to create only a single image out of all
+        data. If there are too many labels, they might not fit. In such
+        circumstances divide them between multiple data files.</li>
+      <li>Please post any issues you have here <a href="issues">https://github.com/morvael/labeler/issues</a>.</li>
+    </ul>
+    <p>TODO write more content</p>
+  </body>
+</html>

@@ -683,7 +683,7 @@ public final class SetEditor extends javax.swing.JPanel implements EditorListene
 
   private void txtLabelsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLabelsFocusLost
     ArrayList<String> list = new ArrayList<>();
-    String[] labels = txtLabels.getText().split(LINE_SEPARATOR);
+    String[] labels = txtLabels.getText().split("\\r?\\n");
     for (String label : labels) {
       if (label != null) {
         list.add(label.trim());

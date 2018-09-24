@@ -43,7 +43,6 @@ public final class Editor {
   private LabelSet labelSet;
   private int index;
 
-  private File dir;
   private File dataFile;
   private File imageFile;
 
@@ -69,10 +68,6 @@ public final class Editor {
     return index;
   }
 
-  public File getDir() {
-    return dir;
-  }
-
   public File getDataFile() {
     return dataFile;
   }
@@ -95,8 +90,8 @@ public final class Editor {
     fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
     fc.setMultiSelectionEnabled(false);
     fc.setFileFilter(ExtensionFileFilter.XML);
-    if (dir != null) {
-      fc.setSelectedFile(dir);
+    if (dataFile != null) {
+      fc.setSelectedFile(dataFile);
     }
     if (fc.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION) {
       try {
@@ -109,8 +104,7 @@ public final class Editor {
           newLabelSet();
         }
         dataFile = fc.getSelectedFile();
-        dir = dataFile.getParentFile();
-        imageFile = new File(dir, String.format("%s.png", Util.getFileName(dataFile)));
+        imageFile = new File(dataFile.getParentFile(), String.format("%s.png", Util.getFileName(dataFile)));
         return true;
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(parent, "Failed to load file.", "Load", JOptionPane.ERROR_MESSAGE);
@@ -148,8 +142,7 @@ public final class Editor {
         File f = new File(fc.getSelectedFile().getParent(), String.format("%s.xml", Util.getFileName(fc.getSelectedFile())));
         labelFile.save(f);
         dataFile = f;
-        dir = f.getParentFile();
-        imageFile = new File(dir, String.format("%s.png", Util.getFileName(dataFile)));
+        imageFile = new File(f.getParentFile(), String.format("%s.png", Util.getFileName(dataFile)));
         return true;
       } catch (Exception ex) {
         JOptionPane.showMessageDialog(parent, "Failed to save file.", "Save As", JOptionPane.ERROR_MESSAGE);

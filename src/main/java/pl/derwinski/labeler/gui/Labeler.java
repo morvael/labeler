@@ -37,7 +37,7 @@ public final class Labeler extends javax.swing.JFrame implements EditorListener 
 
   private static final long serialVersionUID = 1L;
 
-  private static final String VERSION = "1.0.0";
+  private static final String VERSION = "1.0.1";
 
   private final Editor editor;
   private final PageEditor pageEditor;

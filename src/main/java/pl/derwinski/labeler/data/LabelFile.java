@@ -39,6 +39,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import org.apache.commons.lang3.Validate;
 import static pl.derwinski.labeler.Util.formatCollection;
 
@@ -49,187 +50,187 @@ import static pl.derwinski.labeler.Util.formatCollection;
 @XStreamAlias("labelFile")
 public final class LabelFile implements Serializable, Iterable<LabelSet> {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private static XStream createXStream() {
-    XStream xs = new XStream(new DomDriver());
-    xs.addPermission(NoTypePermission.NONE);
-    xs.addPermission(NullPermission.NULL);
-    xs.addPermission(PrimitiveTypePermission.PRIMITIVES);
-    xs.allowTypeHierarchy(Collection.class);
-    xs.allowTypesByWildcard(new String[]{
-      LabelFile.class.getPackage().getName() + ".*"
-    });
-    xs.ignoreUnknownElements();
-    xs.setMode(XStream.NO_REFERENCES);
-    xs.processAnnotations(Margins.class);
-    xs.processAnnotations(LabelPaint.class);
-    xs.processAnnotations(ColorPaint.class);
-    xs.processAnnotations(LabelFont.class);
-    xs.processAnnotations(LabelSet.class);
-    xs.processAnnotations(LabelFile.class);
-    return xs;
-  }
-
-  public static LabelFile load(InputStream is) throws IOException {
-    try (InputStreamReader reader = new InputStreamReader(is, "utf-8")) {
-      XStream xs = createXStream();
-      return (LabelFile) xs.fromXML(reader);
+    private static XStream createXStream() {
+        XStream xs = new XStream(new DomDriver());
+        xs.addPermission(NoTypePermission.NONE);
+        xs.addPermission(NullPermission.NULL);
+        xs.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xs.allowTypeHierarchy(Collection.class);
+        xs.allowTypesByWildcard(new String[]{
+            LabelFile.class.getPackage().getName() + ".*"
+        });
+        xs.ignoreUnknownElements();
+        xs.setMode(XStream.NO_REFERENCES);
+        xs.processAnnotations(Margins.class);
+        xs.processAnnotations(LabelPaint.class);
+        xs.processAnnotations(ColorPaint.class);
+        xs.processAnnotations(LabelFont.class);
+        xs.processAnnotations(LabelSet.class);
+        xs.processAnnotations(LabelFile.class);
+        return xs;
     }
-  }
 
-  public static LabelFile load(File f) throws IOException {
-    try (FileInputStream fis = new FileInputStream(f);
-            BufferedInputStream bis = new BufferedInputStream(fis)) {
-      return LabelFile.load(bis);
+    public static LabelFile load(InputStream is) throws IOException {
+        try (InputStreamReader reader = new InputStreamReader(is, "utf-8")) {
+            XStream xs = createXStream();
+            return (LabelFile) xs.fromXML(reader);
+        }
     }
-  }
 
-  @XStreamAsAttribute
-  private double dpi = 600d;
-  @XStreamAsAttribute
-  private double pageWidth = 210d;
-  @XStreamAsAttribute
-  private double pageHeight = 297d;
-  @XStreamAsAttribute
-  private double columnSpacing = 2d;
-  @XStreamAsAttribute
-  private double rowSpacing = 2d;
-  private Margins pageMargins = new Margins(20d, 20d, 20d, 20d);
-  private LabelPaint pagePaint = new ColorPaint(Color.WHITE);
-  @XStreamImplicit
-  private ArrayList<LabelSet> labelSets = new ArrayList<>();
-
-  public LabelFile() {
-
-  }
-
-  public LabelFile(double dpi, double pageWidth, double pageHeight, double columnSpacing, double rowSpacing, Margins pageMargins, LabelPaint pagePaint, ArrayList<LabelSet> labelSets) {
-    setDpi(dpi);
-    setPageWidth(pageWidth);
-    setPageHeight(pageHeight);
-    setRowSpacing(rowSpacing);
-    setColumnSpacing(columnSpacing);
-    setPageMargins(pageMargins);
-    setPagePaint(pagePaint);
-    setLabelSets(labelSets);
-  }
-
-  public void save(OutputStream os) throws IOException {
-    try (OutputStreamWriter osw = new OutputStreamWriter(os, "utf-8")) {
-      osw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-      osw.write(System.getProperty("line.separator"));
-      XStream xs = createXStream();
-      xs.toXML(this, osw);
-      osw.flush();
+    public static LabelFile load(File f) throws IOException {
+        try (FileInputStream fis = new FileInputStream(f);
+                BufferedInputStream bis = new BufferedInputStream(fis)) {
+            return LabelFile.load(bis);
+        }
     }
-  }
 
-  public void save(File f) throws IOException {
-    try (FileOutputStream fos = new FileOutputStream(f, false);
-            BufferedOutputStream bos = new BufferedOutputStream(fos)) {
-      save(bos);
+    @XStreamAsAttribute
+    private double dpi = 600d;
+    @XStreamAsAttribute
+    private double pageWidth = 210d;
+    @XStreamAsAttribute
+    private double pageHeight = 297d;
+    @XStreamAsAttribute
+    private double columnSpacing = 2d;
+    @XStreamAsAttribute
+    private double rowSpacing = 2d;
+    private Margins pageMargins = new Margins(20d, 20d, 20d, 20d);
+    private LabelPaint pagePaint = new ColorPaint(Color.WHITE);
+    @XStreamImplicit
+    private ArrayList<LabelSet> labelSets = new ArrayList<>();
+
+    public LabelFile() {
+
     }
-  }
 
-  public double getDpi() {
-    return dpi;
-  }
+    public LabelFile(double dpi, double pageWidth, double pageHeight, double columnSpacing, double rowSpacing, Margins pageMargins, LabelPaint pagePaint, ArrayList<LabelSet> labelSets) {
+        setDpi(dpi);
+        setPageWidth(pageWidth);
+        setPageHeight(pageHeight);
+        setRowSpacing(rowSpacing);
+        setColumnSpacing(columnSpacing);
+        setPageMargins(pageMargins);
+        setPagePaint(pagePaint);
+        setLabelSets(labelSets);
+    }
 
-  public void setDpi(double dpi) {
-    Validate.isTrue(dpi > 0d);
-    this.dpi = dpi;
-  }
+    public void save(OutputStream os) throws IOException {
+        try (OutputStreamWriter osw = new OutputStreamWriter(os, "utf-8")) {
+            osw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            osw.write(System.getProperty("line.separator"));
+            XStream xs = createXStream();
+            xs.toXML(this, osw);
+            osw.flush();
+        }
+    }
 
-  public double getPageWidth() {
-    return pageWidth;
-  }
+    public void save(File f) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(f, false);
+                BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+            save(bos);
+        }
+    }
 
-  public void setPageWidth(double pageWidth) {
-    Validate.isTrue(pageWidth > 0d);
-    this.pageWidth = pageWidth;
-  }
+    public double getDpi() {
+        return dpi;
+    }
 
-  public double getPageHeight() {
-    return pageHeight;
-  }
+    public void setDpi(double dpi) {
+        Validate.isTrue(dpi > 0d);
+        this.dpi = dpi;
+    }
 
-  public void setPageHeight(double pageHeight) {
-    Validate.isTrue(pageHeight > 0d);
-    this.pageHeight = pageHeight;
-  }
+    public double getPageWidth() {
+        return pageWidth;
+    }
 
-  public double getColumnSpacing() {
-    return columnSpacing;
-  }
+    public void setPageWidth(double pageWidth) {
+        Validate.isTrue(pageWidth > 0d);
+        this.pageWidth = pageWidth;
+    }
 
-  public void setColumnSpacing(double columnSpacing) {
-    Validate.isTrue(columnSpacing >= 0d);
-    this.columnSpacing = columnSpacing;
-  }
+    public double getPageHeight() {
+        return pageHeight;
+    }
 
-  public double getRowSpacing() {
-    return rowSpacing;
-  }
+    public void setPageHeight(double pageHeight) {
+        Validate.isTrue(pageHeight > 0d);
+        this.pageHeight = pageHeight;
+    }
 
-  public void setRowSpacing(double rowSpacing) {
-    Validate.isTrue(rowSpacing >= 0d);
-    this.rowSpacing = rowSpacing;
-  }
+    public double getColumnSpacing() {
+        return columnSpacing;
+    }
 
-  public Margins getPageMargins() {
-    return pageMargins;
-  }
+    public void setColumnSpacing(double columnSpacing) {
+        Validate.isTrue(columnSpacing >= 0d);
+        this.columnSpacing = columnSpacing;
+    }
 
-  public void setPageMargins(Margins pageMargins) {
-    Validate.notNull(pageMargins);
-    this.pageMargins = pageMargins;
-  }
+    public double getRowSpacing() {
+        return rowSpacing;
+    }
 
-  public LabelPaint getPagePaint() {
-    return pagePaint;
-  }
+    public void setRowSpacing(double rowSpacing) {
+        Validate.isTrue(rowSpacing >= 0d);
+        this.rowSpacing = rowSpacing;
+    }
 
-  public void setPagePaint(LabelPaint pagePaint) {
-    Validate.notNull(pagePaint);
-    this.pagePaint = pagePaint;
-  }
+    public Margins getPageMargins() {
+        return pageMargins;
+    }
 
-  public ArrayList<LabelSet> getLabelSets() {
-    return labelSets;
-  }
+    public void setPageMargins(Margins pageMargins) {
+        Objects.requireNonNull(pageMargins);
+        this.pageMargins = pageMargins;
+    }
 
-  public void setLabelSets(ArrayList<LabelSet> labelSets) {
-    Validate.notNull(labelSets);
-    this.labelSets = labelSets;
-  }
+    public LabelPaint getPagePaint() {
+        return pagePaint;
+    }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("LabelFile [dpi=");
-    sb.append(dpi);
-    sb.append(", pageWidth=");
-    sb.append(pageWidth);
-    sb.append(", pageHeight=");
-    sb.append(pageHeight);
-    sb.append(", columnSpacing=");
-    sb.append(columnSpacing);
-    sb.append(", rowSpacing=");
-    sb.append(rowSpacing);
-    sb.append(", pageMargins=");
-    sb.append(pageMargins);
-    sb.append(", pagePaint=");
-    sb.append(pagePaint);
-    sb.append(", labelSets=");
-    formatCollection(sb, labelSets);
-    sb.append("]");
-    return sb.toString();
-  }
+    public void setPagePaint(LabelPaint pagePaint) {
+        Objects.requireNonNull(pagePaint);
+        this.pagePaint = pagePaint;
+    }
 
-  @Override
-  public Iterator<LabelSet> iterator() {
-    return labelSets.iterator();
-  }
+    public ArrayList<LabelSet> getLabelSets() {
+        return labelSets;
+    }
+
+    public void setLabelSets(ArrayList<LabelSet> labelSets) {
+        Objects.requireNonNull(labelSets);
+        this.labelSets = labelSets;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("LabelFile [dpi=");
+        sb.append(dpi);
+        sb.append(", pageWidth=");
+        sb.append(pageWidth);
+        sb.append(", pageHeight=");
+        sb.append(pageHeight);
+        sb.append(", columnSpacing=");
+        sb.append(columnSpacing);
+        sb.append(", rowSpacing=");
+        sb.append(rowSpacing);
+        sb.append(", pageMargins=");
+        sb.append(pageMargins);
+        sb.append(", pagePaint=");
+        sb.append(pagePaint);
+        sb.append(", labelSets=");
+        formatCollection(sb, labelSets);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public Iterator<LabelSet> iterator() {
+        return labelSets.iterator();
+    }
 
 }

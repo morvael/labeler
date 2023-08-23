@@ -115,6 +115,11 @@
                     <artifactId>launch4j-maven-plugin</artifactId>
                     <version>2.4.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>net.jsign</groupId>
+                    <artifactId>jsign-maven-plugin</artifactId>
+                    <version>5.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -188,6 +193,28 @@
                                 <internalName>${project.name}</internalName>
                                 <originalFilename>${project.name}.exe</originalFilename>
                             </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.jsign</groupId>
+                <artifactId>jsign-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <file>${project.build.directory}/${project.name}.exe</file>
+                            <name>${project.name}</name>
+                            <url>https://github.com/morvael/labeler</url>
+                            <keystore>${basedir}/../../certificate.jks</keystore>
+                            <storepass>file:${basedir}/../../certificate.txt</storepass>
+                            <alias>te-7eda187a-e8d7-4f65-a23d-22ba7616df8f</alias>
+                            <tsaurl>http://timestamp.sectigo.com</tsaurl>
                         </configuration>
                     </execution>
                 </executions>

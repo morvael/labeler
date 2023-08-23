@@ -75,7 +75,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.4.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -164,7 +164,8 @@
                         <configuration>
                             <headerType>gui</headerType>
                             <outfile>${project.build.directory}/${project.name}.exe</outfile>
-                            <jar>${project.build.directory}/${project.build.finalName}.jar</jar>
+                            <jar>${project.build.finalName}.jar</jar>
+                            <dontWrapJar>true</dontWrapJar>
                             <errTitle>${project.name}</errTitle>
                             <downloadUrl>https://adoptium.net/</downloadUrl>
                             <icon>src/main/resources/${project.name}.ico</icon>
@@ -174,6 +175,7 @@
                             </classPath>
                             <jre>
                                 <path>jre</path>
+                                <minVersion>17</minVersion>
                             </jre>
                             <versionInfo>
                                 <fileVersion>${project.version}.0</fileVersion>

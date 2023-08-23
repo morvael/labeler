@@ -31,740 +31,740 @@ import pl.derwinski.labeler.data.LabelSet;
  */
 public final class SetEditor extends javax.swing.JPanel implements EditorListener {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
-  private Editor editor;
-  private LabelSet labelSet;
+    private Editor editor;
+    private LabelSet labelSet;
 
-  public SetEditor() {
-    initComponents();
-  }
-
-  public void startEditing(Editor editor) {
-    this.editor = editor;
-    changed(editor.getLabelFile(), editor.getLabelSet());
-    editor.addListener(this);
-  }
-
-  @Override
-  public void changed(LabelFile labelFile, LabelSet labelSet) {
-    this.labelSet = labelSet;
-
-    NumberFormat format = editor.getFormat();
-    txtTopDiameter.setText(format.doubleToString(labelSet.getTopDiameter()));
-    txtBottomDiameter.setText(format.doubleToString(labelSet.getBottomDiameter()));
-    txtHeight.setText(format.doubleToString(labelSet.getHeight()));
-    txtCoveredAngle.setText(format.doubleToString(labelSet.getCoveredAngle()));
-    txtTopInsets.setText(format.doubleToString(labelSet.getInsets().getTop()));
-    txtLeftInsets.setText(format.doubleToString(labelSet.getInsets().getLeft()));
-    txtBottomInsets.setText(format.doubleToString(labelSet.getInsets().getBottom()));
-    txtRightInsets.setText(format.doubleToString(labelSet.getInsets().getRight()));
-    cmbFontName.setSelectedItem(labelSet.getFont().getName());
-    chkBold.setSelected(labelSet.getFont().isBold());
-    chkItalic.setSelected(labelSet.getFont().isItalic());
-    txtTextSize.setText(format.doubleToString(labelSet.getFont().getSize()));
-    txtReductionStep.setText(format.doubleToString(labelSet.getFont().getReductionStep()));
-    txtHorizontalMargin.setText(format.doubleToString(labelSet.getFont().getHorizontalMargin()));
-    txtVerticalMargin.setText(format.doubleToString(labelSet.getFont().getVerticalMargin()));
-    cmdBackgroundColor.setBackground(((ColorPaint) labelSet.getBackgroundPaint()).createColor());
-    cmdBackgroundColor.setForeground(((ColorPaint) labelSet.getBackgroundPaint()).createReversedColor());
-    cmdTextColor.setBackground(((ColorPaint) labelSet.getTextPaint()).createColor());
-    cmdTextColor.setForeground(((ColorPaint) labelSet.getTextPaint()).createReversedColor());
-    labelsToText();
-
-    lblPosition.setText(editor.getPosition());
-  }
-
-  private void labelsToText() {
-    StringBuilder sb = new StringBuilder();
-    for (String label : labelSet.getLabels()) {
-      if (label != null) {
-        sb.append(label.trim());
-        sb.append(LINE_SEPARATOR);
-      }
+    public SetEditor() {
+        initComponents();
     }
-    String s = sb.toString();
-    if (s.equals(txtLabels.getText()) == false) {
-      txtLabels.setText(sb.toString());
+
+    public void startEditing(Editor editor) {
+        this.editor = editor;
+        changed(editor.getLabelFile(), editor.getLabelSet());
+        editor.addListener(this);
     }
-  }
 
-  @Override
-  public void altered(LabelFile labelFile) {
-    //
-  }
+    @Override
+    public void changed(LabelFile labelFile, LabelSet labelSet) {
+        this.labelSet = labelSet;
 
-  @Override
-  public void altered(LabelSet labelSet) {
-    //
-  }
+        NumberFormat format = editor.getFormat();
+        txtTopDiameter.setText(format.doubleToString(labelSet.getTopDiameter()));
+        txtBottomDiameter.setText(format.doubleToString(labelSet.getBottomDiameter()));
+        txtHeight.setText(format.doubleToString(labelSet.getHeight()));
+        txtCoveredAngle.setText(format.doubleToString(labelSet.getCoveredAngle()));
+        txtTopInsets.setText(format.doubleToString(labelSet.getInsets().getTop()));
+        txtLeftInsets.setText(format.doubleToString(labelSet.getInsets().getLeft()));
+        txtBottomInsets.setText(format.doubleToString(labelSet.getInsets().getBottom()));
+        txtRightInsets.setText(format.doubleToString(labelSet.getInsets().getRight()));
+        cmbFontName.setSelectedItem(labelSet.getFont().getName());
+        chkBold.setSelected(labelSet.getFont().isBold());
+        chkItalic.setSelected(labelSet.getFont().isItalic());
+        txtTextSize.setText(format.doubleToString(labelSet.getFont().getSize()));
+        txtReductionStep.setText(format.doubleToString(labelSet.getFont().getReductionStep()));
+        txtHorizontalMargin.setText(format.doubleToString(labelSet.getFont().getHorizontalMargin()));
+        txtVerticalMargin.setText(format.doubleToString(labelSet.getFont().getVerticalMargin()));
+        cmdBackgroundColor.setBackground(((ColorPaint) labelSet.getBackgroundPaint()).createColor());
+        cmdBackgroundColor.setForeground(((ColorPaint) labelSet.getBackgroundPaint()).createReversedColor());
+        cmdTextColor.setBackground(((ColorPaint) labelSet.getTextPaint()).createColor());
+        cmdTextColor.setForeground(((ColorPaint) labelSet.getTextPaint()).createReversedColor());
+        labelsToText();
 
-  /**
-   * This method is called from within the constructor to initialize the form.
-   * WARNING: Do NOT modify this code. The content of this method is always
-   * regenerated by the Form Editor.
-   */
-  @SuppressWarnings("unchecked")
-  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-  private void initComponents() {
-    java.awt.GridBagConstraints gridBagConstraints;
+        lblPosition.setText(editor.getPosition());
+    }
 
-    navPanel = new javax.swing.JPanel();
-    cmdAdd = new javax.swing.JButton();
-    cmdFirst = new javax.swing.JButton();
-    cmdPrevious = new javax.swing.JButton();
-    lblPosition = new javax.swing.JLabel();
-    cmdNext = new javax.swing.JButton();
-    cmdLast = new javax.swing.JButton();
-    cmdDelete = new javax.swing.JButton();
-    lblTopDiameter = new javax.swing.JLabel();
-    txtTopDiameter = new javax.swing.JTextField();
-    lblBottomDiameter = new javax.swing.JLabel();
-    txtBottomDiameter = new javax.swing.JTextField();
-    lblHeight = new javax.swing.JLabel();
-    txtHeight = new javax.swing.JTextField();
-    lblCoveredAngle = new javax.swing.JLabel();
-    txtCoveredAngle = new javax.swing.JTextField();
-    lblTopInsets = new javax.swing.JLabel();
-    txtTopInsets = new javax.swing.JTextField();
-    lblLeftInsets = new javax.swing.JLabel();
-    txtLeftInsets = new javax.swing.JTextField();
-    lblBottomInsets = new javax.swing.JLabel();
-    txtBottomInsets = new javax.swing.JTextField();
-    lblRightInsets = new javax.swing.JLabel();
-    txtRightInsets = new javax.swing.JTextField();
-    lblFontName = new javax.swing.JLabel();
-    cmbFontName = new javax.swing.JComboBox<>();
-    chkBold = new javax.swing.JCheckBox();
-    chkItalic = new javax.swing.JCheckBox();
-    lblTextSize = new javax.swing.JLabel();
-    txtTextSize = new javax.swing.JTextField();
-    lblReductionStep = new javax.swing.JLabel();
-    txtReductionStep = new javax.swing.JTextField();
-    lblHorizontalMargin = new javax.swing.JLabel();
-    txtHorizontalMargin = new javax.swing.JTextField();
-    lblVerticalMargin = new javax.swing.JLabel();
-    txtVerticalMargin = new javax.swing.JTextField();
-    lblBackgroundColor = new javax.swing.JLabel();
-    cmdBackgroundColor = new javax.swing.JButton();
-    lblTextColor = new javax.swing.JLabel();
-    cmdTextColor = new javax.swing.JButton();
-    lblLabels = new javax.swing.JLabel();
-    spLabels = new javax.swing.JScrollPane();
-    txtLabels = new javax.swing.JTextArea();
+    private void labelsToText() {
+        StringBuilder sb = new StringBuilder();
+        for (String label : labelSet.getLabels()) {
+            if (label != null) {
+                sb.append(label.trim());
+                sb.append(LINE_SEPARATOR);
+            }
+        }
+        String s = sb.toString();
+        if (s.equals(txtLabels.getText()) == false) {
+            txtLabels.setText(sb.toString());
+        }
+    }
 
-    setMinimumSize(new java.awt.Dimension(363, 393));
-    setLayout(new java.awt.GridBagLayout());
+    @Override
+    public void altered(LabelFile labelFile) {
+        //
+    }
 
-    cmdAdd.setText("➕");
-    cmdAdd.setToolTipText("Add new set");
-    cmdAdd.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdAddActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdAdd);
+    @Override
+    public void altered(LabelSet labelSet) {
+        //
+    }
 
-    cmdFirst.setText("⏮");
-    cmdFirst.setToolTipText("Move to first set");
-    cmdFirst.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdFirstActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdFirst);
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-    cmdPrevious.setText("⏴");
-    cmdPrevious.setToolTipText("Move to previous set");
-    cmdPrevious.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdPreviousActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdPrevious);
+        navPanel = new javax.swing.JPanel();
+        cmdAdd = new javax.swing.JButton();
+        cmdFirst = new javax.swing.JButton();
+        cmdPrevious = new javax.swing.JButton();
+        lblPosition = new javax.swing.JLabel();
+        cmdNext = new javax.swing.JButton();
+        cmdLast = new javax.swing.JButton();
+        cmdDelete = new javax.swing.JButton();
+        lblTopDiameter = new javax.swing.JLabel();
+        txtTopDiameter = new javax.swing.JTextField();
+        lblBottomDiameter = new javax.swing.JLabel();
+        txtBottomDiameter = new javax.swing.JTextField();
+        lblHeight = new javax.swing.JLabel();
+        txtHeight = new javax.swing.JTextField();
+        lblCoveredAngle = new javax.swing.JLabel();
+        txtCoveredAngle = new javax.swing.JTextField();
+        lblTopInsets = new javax.swing.JLabel();
+        txtTopInsets = new javax.swing.JTextField();
+        lblLeftInsets = new javax.swing.JLabel();
+        txtLeftInsets = new javax.swing.JTextField();
+        lblBottomInsets = new javax.swing.JLabel();
+        txtBottomInsets = new javax.swing.JTextField();
+        lblRightInsets = new javax.swing.JLabel();
+        txtRightInsets = new javax.swing.JTextField();
+        lblFontName = new javax.swing.JLabel();
+        cmbFontName = new javax.swing.JComboBox<>();
+        chkBold = new javax.swing.JCheckBox();
+        chkItalic = new javax.swing.JCheckBox();
+        lblTextSize = new javax.swing.JLabel();
+        txtTextSize = new javax.swing.JTextField();
+        lblReductionStep = new javax.swing.JLabel();
+        txtReductionStep = new javax.swing.JTextField();
+        lblHorizontalMargin = new javax.swing.JLabel();
+        txtHorizontalMargin = new javax.swing.JTextField();
+        lblVerticalMargin = new javax.swing.JLabel();
+        txtVerticalMargin = new javax.swing.JTextField();
+        lblBackgroundColor = new javax.swing.JLabel();
+        cmdBackgroundColor = new javax.swing.JButton();
+        lblTextColor = new javax.swing.JLabel();
+        cmdTextColor = new javax.swing.JButton();
+        lblLabels = new javax.swing.JLabel();
+        spLabels = new javax.swing.JScrollPane();
+        txtLabels = new javax.swing.JTextArea();
 
-    lblPosition.setText("0 of 0");
-    lblPosition.setToolTipText("Current set");
-    navPanel.add(lblPosition);
+        setMinimumSize(new java.awt.Dimension(363, 393));
+        setLayout(new java.awt.GridBagLayout());
 
-    cmdNext.setText("⏵");
-    cmdNext.setToolTipText("Move to next set");
-    cmdNext.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdNextActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdNext);
+        cmdAdd.setText("+");
+        cmdAdd.setToolTipText("Add new set");
+        cmdAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdAddActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdAdd);
 
-    cmdLast.setText("⏭");
-    cmdLast.setToolTipText("Move to last set");
-    cmdLast.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdLastActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdLast);
+        cmdFirst.setText("≪");
+        cmdFirst.setToolTipText("Move to first set");
+        cmdFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdFirstActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdFirst);
 
-    cmdDelete.setText("✖");
-    cmdDelete.setToolTipText("Delete this set");
-    cmdDelete.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdDeleteActionPerformed(evt);
-      }
-    });
-    navPanel.add(cmdDelete);
+        cmdPrevious.setText("<");
+        cmdPrevious.setToolTipText("Move to previous set");
+        cmdPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdPreviousActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdPrevious);
 
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 3;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(navPanel, gridBagConstraints);
+        lblPosition.setText("0 of 0");
+        lblPosition.setToolTipText("Current set");
+        navPanel.add(lblPosition);
 
-    lblTopDiameter.setText("Top diameter (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblTopDiameter, gridBagConstraints);
+        cmdNext.setText(">");
+        cmdNext.setToolTipText("Move to next set");
+        cmdNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdNextActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdNext);
 
-    txtTopDiameter.setColumns(10);
-    txtTopDiameter.setText("0");
-    txtTopDiameter.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtTopDiameterFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtTopDiameter, gridBagConstraints);
+        cmdLast.setText("≫");
+        cmdLast.setToolTipText("Move to last set");
+        cmdLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLastActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdLast);
 
-    lblBottomDiameter.setText("Bottom diameter (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblBottomDiameter, gridBagConstraints);
+        cmdDelete.setText("x");
+        cmdDelete.setToolTipText("Delete this set");
+        cmdDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdDeleteActionPerformed(evt);
+            }
+        });
+        navPanel.add(cmdDelete);
 
-    txtBottomDiameter.setColumns(10);
-    txtBottomDiameter.setText("0");
-    txtBottomDiameter.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtBottomDiameterFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtBottomDiameter, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(navPanel, gridBagConstraints);
 
-    lblHeight.setText("Height (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblHeight, gridBagConstraints);
+        lblTopDiameter.setText("Top diameter (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblTopDiameter, gridBagConstraints);
 
-    txtHeight.setColumns(10);
-    txtHeight.setText("0");
-    txtHeight.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtHeightFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 3;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtHeight, gridBagConstraints);
+        txtTopDiameter.setColumns(10);
+        txtTopDiameter.setText("0");
+        txtTopDiameter.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTopDiameterFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtTopDiameter, gridBagConstraints);
 
-    lblCoveredAngle.setText("Covered angle (deg)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblCoveredAngle, gridBagConstraints);
+        lblBottomDiameter.setText("Bottom diameter (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblBottomDiameter, gridBagConstraints);
 
-    txtCoveredAngle.setColumns(10);
-    txtCoveredAngle.setText("0");
-    txtCoveredAngle.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtCoveredAngleFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtCoveredAngle, gridBagConstraints);
+        txtBottomDiameter.setColumns(10);
+        txtBottomDiameter.setText("0");
+        txtBottomDiameter.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBottomDiameterFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtBottomDiameter, gridBagConstraints);
 
-    lblTopInsets.setText("Top inset (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblTopInsets, gridBagConstraints);
+        lblHeight.setText("Height (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblHeight, gridBagConstraints);
 
-    txtTopInsets.setColumns(10);
-    txtTopInsets.setText("0");
-    txtTopInsets.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtTopInsetsFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 5;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtTopInsets, gridBagConstraints);
+        txtHeight.setColumns(10);
+        txtHeight.setText("0");
+        txtHeight.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHeightFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtHeight, gridBagConstraints);
 
-    lblLeftInsets.setText("Left inset (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 6;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblLeftInsets, gridBagConstraints);
+        lblCoveredAngle.setText("Covered angle (deg)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblCoveredAngle, gridBagConstraints);
 
-    txtLeftInsets.setColumns(10);
-    txtLeftInsets.setText("0");
-    txtLeftInsets.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtLeftInsetsFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 6;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtLeftInsets, gridBagConstraints);
+        txtCoveredAngle.setColumns(10);
+        txtCoveredAngle.setText("0");
+        txtCoveredAngle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCoveredAngleFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtCoveredAngle, gridBagConstraints);
 
-    lblBottomInsets.setText("Bottom inset (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 7;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblBottomInsets, gridBagConstraints);
+        lblTopInsets.setText("Top inset (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblTopInsets, gridBagConstraints);
 
-    txtBottomInsets.setColumns(10);
-    txtBottomInsets.setText("0");
-    txtBottomInsets.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtBottomInsetsFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 7;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtBottomInsets, gridBagConstraints);
+        txtTopInsets.setColumns(10);
+        txtTopInsets.setText("0");
+        txtTopInsets.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTopInsetsFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtTopInsets, gridBagConstraints);
 
-    lblRightInsets.setText("Right inset (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 8;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblRightInsets, gridBagConstraints);
+        lblLeftInsets.setText("Left inset (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblLeftInsets, gridBagConstraints);
 
-    txtRightInsets.setColumns(10);
-    txtRightInsets.setText("0");
-    txtRightInsets.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtRightInsetsFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 8;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtRightInsets, gridBagConstraints);
+        txtLeftInsets.setColumns(10);
+        txtLeftInsets.setText("0");
+        txtLeftInsets.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLeftInsetsFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtLeftInsets, gridBagConstraints);
 
-    lblFontName.setText("Font name");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 9;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblFontName, gridBagConstraints);
+        lblBottomInsets.setText("Bottom inset (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblBottomInsets, gridBagConstraints);
 
-    cmbFontName.setModel(new DefaultComboBoxModel<>(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()));
-    cmbFontName.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmbFontNameActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 9;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(cmbFontName, gridBagConstraints);
+        txtBottomInsets.setColumns(10);
+        txtBottomInsets.setText("0");
+        txtBottomInsets.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtBottomInsetsFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtBottomInsets, gridBagConstraints);
 
-    chkBold.setText("Bold");
-    chkBold.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        chkBoldActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 10;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(chkBold, gridBagConstraints);
+        lblRightInsets.setText("Right inset (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblRightInsets, gridBagConstraints);
 
-    chkItalic.setText("Italic");
-    chkItalic.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        chkItalicActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 11;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(chkItalic, gridBagConstraints);
+        txtRightInsets.setColumns(10);
+        txtRightInsets.setText("0");
+        txtRightInsets.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRightInsetsFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtRightInsets, gridBagConstraints);
 
-    lblTextSize.setText("Text size (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 12;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblTextSize, gridBagConstraints);
+        lblFontName.setText("Font name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblFontName, gridBagConstraints);
 
-    txtTextSize.setColumns(10);
-    txtTextSize.setText("0");
-    txtTextSize.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtTextSizeFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 12;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtTextSize, gridBagConstraints);
+        cmbFontName.setModel(new DefaultComboBoxModel<>(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames()));
+        cmbFontName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFontNameActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(cmbFontName, gridBagConstraints);
 
-    lblReductionStep.setText("Reduction step (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 13;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblReductionStep, gridBagConstraints);
+        chkBold.setText("Bold");
+        chkBold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkBoldActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(chkBold, gridBagConstraints);
 
-    txtReductionStep.setColumns(10);
-    txtReductionStep.setText("0");
-    txtReductionStep.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtReductionStepFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 13;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtReductionStep, gridBagConstraints);
+        chkItalic.setText("Italic");
+        chkItalic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkItalicActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(chkItalic, gridBagConstraints);
 
-    lblHorizontalMargin.setText("Horizontal margin (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 14;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblHorizontalMargin, gridBagConstraints);
+        lblTextSize.setText("Text size (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblTextSize, gridBagConstraints);
 
-    txtHorizontalMargin.setColumns(10);
-    txtHorizontalMargin.setText("0");
-    txtHorizontalMargin.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtHorizontalMarginFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 14;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtHorizontalMargin, gridBagConstraints);
+        txtTextSize.setColumns(10);
+        txtTextSize.setText("0");
+        txtTextSize.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTextSizeFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtTextSize, gridBagConstraints);
 
-    lblVerticalMargin.setText("Vertical margin (mm)");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 15;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblVerticalMargin, gridBagConstraints);
+        lblReductionStep.setText("Reduction step (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblReductionStep, gridBagConstraints);
 
-    txtVerticalMargin.setColumns(10);
-    txtVerticalMargin.setText("0");
-    txtVerticalMargin.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtVerticalMarginFocusLost(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 15;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(txtVerticalMargin, gridBagConstraints);
+        txtReductionStep.setColumns(10);
+        txtReductionStep.setText("0");
+        txtReductionStep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtReductionStepFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtReductionStep, gridBagConstraints);
 
-    lblBackgroundColor.setText("Label color");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 16;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblBackgroundColor, gridBagConstraints);
+        lblHorizontalMargin.setText("Horizontal margin (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblHorizontalMargin, gridBagConstraints);
 
-    cmdBackgroundColor.setText("...");
-    cmdBackgroundColor.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdBackgroundColorActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 16;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(cmdBackgroundColor, gridBagConstraints);
+        txtHorizontalMargin.setColumns(10);
+        txtHorizontalMargin.setText("0");
+        txtHorizontalMargin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHorizontalMarginFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtHorizontalMargin, gridBagConstraints);
 
-    lblTextColor.setText("Text color");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 17;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblTextColor, gridBagConstraints);
+        lblVerticalMargin.setText("Vertical margin (mm)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblVerticalMargin, gridBagConstraints);
 
-    cmdTextColor.setText("...");
-    cmdTextColor.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        cmdTextColorActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 17;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(cmdTextColor, gridBagConstraints);
+        txtVerticalMargin.setColumns(10);
+        txtVerticalMargin.setText("0");
+        txtVerticalMargin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVerticalMarginFocusLost(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(txtVerticalMargin, gridBagConstraints);
 
-    lblLabels.setText("Labels");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(lblLabels, gridBagConstraints);
+        lblBackgroundColor.setText("Label color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblBackgroundColor, gridBagConstraints);
 
-    txtLabels.setColumns(20);
-    txtLabels.setRows(5);
-    txtLabels.addFocusListener(new java.awt.event.FocusAdapter() {
-      public void focusLost(java.awt.event.FocusEvent evt) {
-        txtLabelsFocusLost(evt);
-      }
-    });
-    spLabels.setViewportView(txtLabels);
+        cmdBackgroundColor.setText("...");
+        cmdBackgroundColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBackgroundColorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(cmdBackgroundColor, gridBagConstraints);
 
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.gridheight = 16;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-    add(spLabels, gridBagConstraints);
-  }// </editor-fold>//GEN-END:initComponents
+        lblTextColor.setText("Text color");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblTextColor, gridBagConstraints);
+
+        cmdTextColor.setText("...");
+        cmdTextColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdTextColorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 17;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(cmdTextColor, gridBagConstraints);
+
+        lblLabels.setText("Labels");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(lblLabels, gridBagConstraints);
+
+        txtLabels.setColumns(20);
+        txtLabels.setRows(5);
+        txtLabels.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLabelsFocusLost(evt);
+            }
+        });
+        spLabels.setViewportView(txtLabels);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 16;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
+        add(spLabels, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
 
   private void cmdBackgroundColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBackgroundColorActionPerformed
-    Color newColor = JColorChooser.showDialog(this, "Pick background color", cmdBackgroundColor.getBackground());
-    if (newColor != null) {
-      labelSet.setBackgroundPaint(new ColorPaint(newColor));
-      cmdBackgroundColor.setBackground(newColor);
-      cmdBackgroundColor.setForeground(((ColorPaint) labelSet.getBackgroundPaint()).createReversedColor());
-      editor.triggerAlteredSet();
-    }
+        Color newColor = JColorChooser.showDialog(this, "Pick background color", cmdBackgroundColor.getBackground());
+        if (newColor != null) {
+            labelSet.setBackgroundPaint(new ColorPaint(newColor));
+            cmdBackgroundColor.setBackground(newColor);
+            cmdBackgroundColor.setForeground(((ColorPaint) labelSet.getBackgroundPaint()).createReversedColor());
+            editor.triggerAlteredSet();
+        }
   }//GEN-LAST:event_cmdBackgroundColorActionPerformed
 
   private void cmdTextColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdTextColorActionPerformed
-    Color newColor = JColorChooser.showDialog(this, "Pick text color", cmdTextColor.getBackground());
-    if (newColor != null) {
-      labelSet.setTextPaint(new ColorPaint(newColor));
-      cmdTextColor.setBackground(newColor);
-      cmdTextColor.setForeground(((ColorPaint) labelSet.getTextPaint()).createReversedColor());
-      editor.triggerAlteredSet();
-    }
+        Color newColor = JColorChooser.showDialog(this, "Pick text color", cmdTextColor.getBackground());
+        if (newColor != null) {
+            labelSet.setTextPaint(new ColorPaint(newColor));
+            cmdTextColor.setBackground(newColor);
+            cmdTextColor.setForeground(((ColorPaint) labelSet.getTextPaint()).createReversedColor());
+            editor.triggerAlteredSet();
+        }
   }//GEN-LAST:event_cmdTextColorActionPerformed
 
   private void txtTopDiameterFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTopDiameterFocusLost
-    editor.setDouble(labelSet, txtTopDiameter, labelSet::setTopDiameter, labelSet::getTopDiameter);
+        editor.setDouble(labelSet, txtTopDiameter, labelSet::setTopDiameter, labelSet::getTopDiameter);
   }//GEN-LAST:event_txtTopDiameterFocusLost
 
   private void txtBottomDiameterFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBottomDiameterFocusLost
-    editor.setDouble(labelSet, txtBottomDiameter, labelSet::setBottomDiameter, labelSet::getBottomDiameter);
+        editor.setDouble(labelSet, txtBottomDiameter, labelSet::setBottomDiameter, labelSet::getBottomDiameter);
   }//GEN-LAST:event_txtBottomDiameterFocusLost
 
   private void txtHeightFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHeightFocusLost
-    editor.setDouble(labelSet, txtHeight, labelSet::setHeight, labelSet::getHeight);
+        editor.setDouble(labelSet, txtHeight, labelSet::setHeight, labelSet::getHeight);
   }//GEN-LAST:event_txtHeightFocusLost
 
   private void txtCoveredAngleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCoveredAngleFocusLost
-    editor.setDouble(labelSet, txtCoveredAngle, labelSet::setCoveredAngle, labelSet::getCoveredAngle);
+        editor.setDouble(labelSet, txtCoveredAngle, labelSet::setCoveredAngle, labelSet::getCoveredAngle);
   }//GEN-LAST:event_txtCoveredAngleFocusLost
 
   private void txtTopInsetsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTopInsetsFocusLost
-    editor.setDouble(labelSet, txtTopInsets, labelSet.getInsets()::setTop, labelSet.getInsets()::getTop);
+        editor.setDouble(labelSet, txtTopInsets, labelSet.getInsets()::setTop, labelSet.getInsets()::getTop);
   }//GEN-LAST:event_txtTopInsetsFocusLost
 
   private void txtLeftInsetsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLeftInsetsFocusLost
-    editor.setDouble(labelSet, txtLeftInsets, labelSet.getInsets()::setLeft, labelSet.getInsets()::getLeft);
+        editor.setDouble(labelSet, txtLeftInsets, labelSet.getInsets()::setLeft, labelSet.getInsets()::getLeft);
   }//GEN-LAST:event_txtLeftInsetsFocusLost
 
   private void txtBottomInsetsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBottomInsetsFocusLost
-    editor.setDouble(labelSet, txtBottomInsets, labelSet.getInsets()::setBottom, labelSet.getInsets()::getBottom);
+        editor.setDouble(labelSet, txtBottomInsets, labelSet.getInsets()::setBottom, labelSet.getInsets()::getBottom);
   }//GEN-LAST:event_txtBottomInsetsFocusLost
 
   private void txtRightInsetsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRightInsetsFocusLost
-    editor.setDouble(labelSet, txtRightInsets, labelSet.getInsets()::setRight, labelSet.getInsets()::getRight);
+        editor.setDouble(labelSet, txtRightInsets, labelSet.getInsets()::setRight, labelSet.getInsets()::getRight);
   }//GEN-LAST:event_txtRightInsetsFocusLost
 
   private void cmbFontNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFontNameActionPerformed
-    labelSet.getFont().setName((String) cmbFontName.getSelectedItem());
-    editor.triggerAlteredSet();
+        labelSet.getFont().setName((String) cmbFontName.getSelectedItem());
+        editor.triggerAlteredSet();
   }//GEN-LAST:event_cmbFontNameActionPerformed
 
   private void chkBoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoldActionPerformed
-    labelSet.getFont().setBold(chkBold.isSelected());
-    editor.triggerAlteredSet();
+        labelSet.getFont().setBold(chkBold.isSelected());
+        editor.triggerAlteredSet();
   }//GEN-LAST:event_chkBoldActionPerformed
 
   private void chkItalicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkItalicActionPerformed
-    labelSet.getFont().setItalic(chkItalic.isSelected());
-    editor.triggerAlteredSet();
+        labelSet.getFont().setItalic(chkItalic.isSelected());
+        editor.triggerAlteredSet();
   }//GEN-LAST:event_chkItalicActionPerformed
 
   private void txtTextSizeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTextSizeFocusLost
-    editor.setDouble(labelSet, txtTextSize, labelSet.getFont()::setSize, labelSet.getFont()::getSize);
+        editor.setDouble(labelSet, txtTextSize, labelSet.getFont()::setSize, labelSet.getFont()::getSize);
   }//GEN-LAST:event_txtTextSizeFocusLost
 
   private void txtReductionStepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtReductionStepFocusLost
-    editor.setDouble(labelSet, txtReductionStep, labelSet.getFont()::setReductionStep, labelSet.getFont()::getReductionStep);
+        editor.setDouble(labelSet, txtReductionStep, labelSet.getFont()::setReductionStep, labelSet.getFont()::getReductionStep);
   }//GEN-LAST:event_txtReductionStepFocusLost
 
   private void txtHorizontalMarginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHorizontalMarginFocusLost
-    editor.setDouble(labelSet, txtHorizontalMargin, labelSet.getFont()::setHorizontalMargin, labelSet.getFont()::getHorizontalMargin);
+        editor.setDouble(labelSet, txtHorizontalMargin, labelSet.getFont()::setHorizontalMargin, labelSet.getFont()::getHorizontalMargin);
   }//GEN-LAST:event_txtHorizontalMarginFocusLost
 
   private void txtLabelsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLabelsFocusLost
-    ArrayList<String> list = new ArrayList<>();
-    String[] labels = txtLabels.getText().split("\\r?\\n");
-    for (String label : labels) {
-      if (label != null) {
-        list.add(label.trim());
-      }
-    }
-    labelSet.setLabels(list);
-    labelsToText();
-    editor.triggerAlteredSet();
+        ArrayList<String> list = new ArrayList<>();
+        String[] labels = txtLabels.getText().split("\\r?\\n");
+        for (String label : labels) {
+            if (label != null) {
+                list.add(label.trim());
+            }
+        }
+        labelSet.setLabels(list);
+        labelsToText();
+        editor.triggerAlteredSet();
   }//GEN-LAST:event_txtLabelsFocusLost
 
   private void txtVerticalMarginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVerticalMarginFocusLost
-    editor.setDouble(labelSet, txtVerticalMargin, labelSet.getFont()::setVerticalMargin, labelSet.getFont()::getVerticalMargin);
+        editor.setDouble(labelSet, txtVerticalMargin, labelSet.getFont()::setVerticalMargin, labelSet.getFont()::getVerticalMargin);
   }//GEN-LAST:event_txtVerticalMarginFocusLost
 
   private void cmdAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAddActionPerformed
-    editor.newLabelSet();
+        editor.newLabelSet();
   }//GEN-LAST:event_cmdAddActionPerformed
 
   private void cmdFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdFirstActionPerformed
-    editor.gotoFirstLabelSet();
+        editor.gotoFirstLabelSet();
   }//GEN-LAST:event_cmdFirstActionPerformed
 
   private void cmdPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdPreviousActionPerformed
-    editor.gotoPreviousLabelSet();
+        editor.gotoPreviousLabelSet();
   }//GEN-LAST:event_cmdPreviousActionPerformed
 
   private void cmdNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNextActionPerformed
-    editor.gotoNextLabelSet();
+        editor.gotoNextLabelSet();
   }//GEN-LAST:event_cmdNextActionPerformed
 
   private void cmdLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLastActionPerformed
-    editor.gotoLastLabelSet();
+        editor.gotoLastLabelSet();
   }//GEN-LAST:event_cmdLastActionPerformed
 
   private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-    editor.deleteLabelSet();
+        editor.deleteLabelSet();
   }//GEN-LAST:event_cmdDeleteActionPerformed
 
-  // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JCheckBox chkBold;
-  private javax.swing.JCheckBox chkItalic;
-  private javax.swing.JComboBox<String> cmbFontName;
-  private javax.swing.JButton cmdAdd;
-  private javax.swing.JButton cmdBackgroundColor;
-  private javax.swing.JButton cmdDelete;
-  private javax.swing.JButton cmdFirst;
-  private javax.swing.JButton cmdLast;
-  private javax.swing.JButton cmdNext;
-  private javax.swing.JButton cmdPrevious;
-  private javax.swing.JButton cmdTextColor;
-  private javax.swing.JLabel lblBackgroundColor;
-  private javax.swing.JLabel lblBottomDiameter;
-  private javax.swing.JLabel lblBottomInsets;
-  private javax.swing.JLabel lblCoveredAngle;
-  private javax.swing.JLabel lblFontName;
-  private javax.swing.JLabel lblHeight;
-  private javax.swing.JLabel lblHorizontalMargin;
-  private javax.swing.JLabel lblLabels;
-  private javax.swing.JLabel lblLeftInsets;
-  private javax.swing.JLabel lblPosition;
-  private javax.swing.JLabel lblReductionStep;
-  private javax.swing.JLabel lblRightInsets;
-  private javax.swing.JLabel lblTextColor;
-  private javax.swing.JLabel lblTextSize;
-  private javax.swing.JLabel lblTopDiameter;
-  private javax.swing.JLabel lblTopInsets;
-  private javax.swing.JLabel lblVerticalMargin;
-  private javax.swing.JPanel navPanel;
-  private javax.swing.JScrollPane spLabels;
-  private javax.swing.JTextField txtBottomDiameter;
-  private javax.swing.JTextField txtBottomInsets;
-  private javax.swing.JTextField txtCoveredAngle;
-  private javax.swing.JTextField txtHeight;
-  private javax.swing.JTextField txtHorizontalMargin;
-  private javax.swing.JTextArea txtLabels;
-  private javax.swing.JTextField txtLeftInsets;
-  private javax.swing.JTextField txtReductionStep;
-  private javax.swing.JTextField txtRightInsets;
-  private javax.swing.JTextField txtTextSize;
-  private javax.swing.JTextField txtTopDiameter;
-  private javax.swing.JTextField txtTopInsets;
-  private javax.swing.JTextField txtVerticalMargin;
-  // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox chkBold;
+    private javax.swing.JCheckBox chkItalic;
+    private javax.swing.JComboBox<String> cmbFontName;
+    private javax.swing.JButton cmdAdd;
+    private javax.swing.JButton cmdBackgroundColor;
+    private javax.swing.JButton cmdDelete;
+    private javax.swing.JButton cmdFirst;
+    private javax.swing.JButton cmdLast;
+    private javax.swing.JButton cmdNext;
+    private javax.swing.JButton cmdPrevious;
+    private javax.swing.JButton cmdTextColor;
+    private javax.swing.JLabel lblBackgroundColor;
+    private javax.swing.JLabel lblBottomDiameter;
+    private javax.swing.JLabel lblBottomInsets;
+    private javax.swing.JLabel lblCoveredAngle;
+    private javax.swing.JLabel lblFontName;
+    private javax.swing.JLabel lblHeight;
+    private javax.swing.JLabel lblHorizontalMargin;
+    private javax.swing.JLabel lblLabels;
+    private javax.swing.JLabel lblLeftInsets;
+    private javax.swing.JLabel lblPosition;
+    private javax.swing.JLabel lblReductionStep;
+    private javax.swing.JLabel lblRightInsets;
+    private javax.swing.JLabel lblTextColor;
+    private javax.swing.JLabel lblTextSize;
+    private javax.swing.JLabel lblTopDiameter;
+    private javax.swing.JLabel lblTopInsets;
+    private javax.swing.JLabel lblVerticalMargin;
+    private javax.swing.JPanel navPanel;
+    private javax.swing.JScrollPane spLabels;
+    private javax.swing.JTextField txtBottomDiameter;
+    private javax.swing.JTextField txtBottomInsets;
+    private javax.swing.JTextField txtCoveredAngle;
+    private javax.swing.JTextField txtHeight;
+    private javax.swing.JTextField txtHorizontalMargin;
+    private javax.swing.JTextArea txtLabels;
+    private javax.swing.JTextField txtLeftInsets;
+    private javax.swing.JTextField txtReductionStep;
+    private javax.swing.JTextField txtRightInsets;
+    private javax.swing.JTextField txtTextSize;
+    private javax.swing.JTextField txtTopDiameter;
+    private javax.swing.JTextField txtTopInsets;
+    private javax.swing.JTextField txtVerticalMargin;
+    // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="cmdAdd">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x2795;"/>
+            <Property name="text" type="java.lang.String" value="+"/>
             <Property name="toolTipText" type="java.lang.String" value="Add new set"/>
           </Properties>
           <Events>
@@ -41,7 +41,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cmdFirst">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x23ee;"/>
+            <Property name="text" type="java.lang.String" value="&#x226a;"/>
             <Property name="toolTipText" type="java.lang.String" value="Move to first set"/>
           </Properties>
           <Events>
@@ -50,7 +50,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cmdPrevious">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x23f4;"/>
+            <Property name="text" type="java.lang.String" value="&lt;"/>
             <Property name="toolTipText" type="java.lang.String" value="Move to previous set"/>
           </Properties>
           <Events>
@@ -65,7 +65,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cmdNext">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x23f5;"/>
+            <Property name="text" type="java.lang.String" value="&gt;"/>
             <Property name="toolTipText" type="java.lang.String" value="Move to next set"/>
           </Properties>
           <Events>
@@ -74,7 +74,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cmdLast">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x23ed;"/>
+            <Property name="text" type="java.lang.String" value="&#x226b;"/>
             <Property name="toolTipText" type="java.lang.String" value="Move to last set"/>
           </Properties>
           <Events>
@@ -83,7 +83,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="cmdDelete">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x2716;"/>
+            <Property name="text" type="java.lang.String" value="x"/>
             <Property name="toolTipText" type="java.lang.String" value="Delete this set"/>
           </Properties>
           <Events>

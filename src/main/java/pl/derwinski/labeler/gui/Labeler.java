@@ -37,7 +37,7 @@ public final class Labeler extends javax.swing.JFrame implements EditorListener 
 
     private static final long serialVersionUID = 1L;
 
-    private static final String VERSION = "1.0.2";
+    private static final String VERSION = "1.0.3";
 
     private final Editor editor;
     private final PageEditor pageEditor;
@@ -250,7 +250,7 @@ public final class Labeler extends javax.swing.JFrame implements EditorListener 
 
   private void miAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAboutActionPerformed
         if (aboutPane == null) {
-            aboutPane = new JEditorPane("text/html", String.format("<b>Labeler %s</b> - creating labels for miniature bases<br>Copyright © 2018-2023 Dominik Derwiński<br>For updates see <a href=\"github\">https://github.com/morvael/labeler</a>.<br><br>This program is free software: you can redistribute it and/or modify<br>it under the terms of the GNU General Public License as published by<br>the Free Software Foundation, either version 3 of the License, or<br>(at your option) any later version.<br><br>This program is distributed in the hope that it will be useful,<br>but WITHOUT ANY WARRANTY; without even the implied warranty of<br>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br>GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License<br>along with this program.  If not, see <a href=\"gnu\">https://www.gnu.org/licenses/</a>.", VERSION));
+            aboutPane = new JEditorPane("text/html", String.format("<b>Labeler %s</b> - creating labels for miniature bases<br>Copyright © 2018-2024 Dominik Derwiński<br>For updates see <a href=\"github\">https://github.com/morvael/labeler</a>.<br><br>This program is free software: you can redistribute it and/or modify<br>it under the terms of the GNU General Public License as published by<br>the Free Software Foundation, either version 3 of the License, or<br>(at your option) any later version.<br><br>This program is distributed in the hope that it will be useful,<br>but WITHOUT ANY WARRANTY; without even the implied warranty of<br>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the<br>GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License<br>along with this program.  If not, see <a href=\"gnu\">https://www.gnu.org/licenses/</a>.", VERSION));
             aboutPane.setEditable(false);
             aboutPane.setOpaque(true);
             aboutPane.addHyperlinkListener((hl) -> {

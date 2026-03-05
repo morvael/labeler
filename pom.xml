@@ -196,6 +196,7 @@
                                 <copy file="${basedir}/target/labeler.jar" todir="${basedir}/dist/base" preservelastmodified="true"/>
                                 <copy file="${basedir}/src/main/resources/labeler.ico" tofile="${basedir}/dist/base/labeler.ico" preservelastmodified="true"/>
                                 <copy file="${basedir}/src/main/resources/labeler.png" tofile="${basedir}/dist/base/labeler.png" preservelastmodified="true"/>
+                                <copy file="${basedir}/src/main/resources/labeler.icns" tofile="${basedir}/dist/base/labeler.icns" preservelastmodified="true"/>
                                 <copy todir="${basedir}/dist/base/lib" preservelastmodified="true">
                                     <fileset dir="${basedir}/target/lib">
                                         <include name="**/*.*"/>
